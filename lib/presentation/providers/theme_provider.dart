@@ -9,3 +9,22 @@ final themeProvider = StateProvider((ref) => false);
 
 //int
 final selectedColorProvider = StateProvider((ref) => 0);
+
+//obj personalizado
+final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>(
+  (ref) => ThemeNotifier(),
+);
+
+//controller o notifier
+class ThemeNotifier extends StateNotifier<AppTheme> {
+  // estado = new AppTheme()
+  ThemeNotifier() : super( AppTheme() );
+
+  void toggleDarkmode() {
+    state = state.copyWith(darkMode: !state.darkMode);
+  }
+
+  void changeColorIndex(int colorIndex) {
+    state = state.copyWith(selectedColor: colorIndex);
+  }
+}
